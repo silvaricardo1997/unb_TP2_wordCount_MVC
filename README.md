@@ -23,6 +23,21 @@ Existem várias variações do padrão MVC, como o MVC clássico, o MVC Model 2 
 
 ## Estrutura do Projeto
 A estrutura do projeto é organizada da seguinte forma:
+unb_TP2_wordCount_MVC
+  ├─ WordCounterApp
+  |    │
+  |    ├── controller
+  |    │   └── WordCounterController.java
+  |    │
+  |    ├── model
+  |    │   ├── WordCounterModel.java
+  |    │   └── WordCounterModelTest.java
+  |    │
+  |    ├── view
+  |    │   └── WordCounterView.java
+  |    └──WordCounterApp.java
+  ├── texto.txt
+  └── stop-words.txt
 
 ## Como Executar
 Para executar o aplicativo, siga estas etapas:
