@@ -19,6 +19,7 @@ O MVC é um padrão arquitetural amplamente utilizado em desenvolvimento de soft
 ## Uso do estilo na no desenho de sistemas
 O uso do padrão MVC torna mais fácil manter e estender o sistema, uma vez que as responsabilidades estão claramente divididas. Além disso, ele promove a reutilização de código, pois você pode substituir ou estender qualquer um dos componentes sem afetar os outros.
 ## Variações do estilo
+Existem várias variações do padrão MVC, como o MVC clássico, o MVC Model 2 (usado em aplicativos da web) e o MVVM (Model-View-ViewModel). A escolha da variação depende das necessidades específicas do projeto.
 
 ## Estrutura do Projeto
 A estrutura do projeto é organizada da seguinte forma:
