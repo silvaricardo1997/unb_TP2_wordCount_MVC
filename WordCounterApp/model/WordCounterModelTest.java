@@ -15,14 +15,14 @@ class WordCounterModelTest {
     public void testCountWordsFromFile_IOExceptionOnFileNotFound() throws IOException {
         // Verifica lançamento de exceção
         assertThrows(IOException.class, () -> {
-            testModel.countWordsFromFile("/invalid.txt", "/invalid.txt", 0);
+            testModel.countWordsFromFile("/invalid.txt", "/invalid.txt");
         });
     }
 
     @Test
     public void testCountWordsFromFile_OnlyNumbersAndSpecialCharacters() throws IOException {
         // when
-        testWordFrequency = testModel.countWordsFromFile("/WordCounterApp/resources/txt_UnitTest/irregular.txt", "/WordCounterApp/resources/stop-words.txt", 1);
+        testWordFrequency = testModel.countWordsFromFile("/wordcounterapp/irregular_test.txt", "/wordcounterapp/stop-words.txt");
 
         // then
         assertTrue(testWordFrequency.isEmpty());
@@ -31,7 +31,7 @@ class WordCounterModelTest {
     @Test
     public void testCountWordsFromFile_OnlyStopWords() throws IOException {
         // when
-        testWordFrequency = testModel.countWordsFromFile("/WordCounterApp/resources/stop-words.txt", "/WordCounterApp/resources/stop-words.txt", 1);
+        testWordFrequency = testModel.countWordsFromFile("/wordcounterapp/stop-words.txt", "/wordcounterapp/stop-words.txt");
 
         // then
         assertTrue(testWordFrequency.isEmpty());
@@ -49,7 +49,7 @@ class WordCounterModelTest {
         testCorrectOutput.put("without", 2);
 
         // when
-        testWordFrequency = testModel.countWordsFromFile("/WordCounterApp/resources/txt_UnitTest/random_test.txt", "/WordCounterApp/resources/stop-words.txt", 30);
+        testWordFrequency = testModel.countWordsFromFile("/wordcounterapp/random_test.txt", "/wordcounterapp/stop-words.txt");
 
         // then
         Assertions.assertEquals(testWordFrequency, testCorrectOutput);
@@ -62,7 +62,7 @@ class WordCounterModelTest {
         int expected = 18;
 
         // when
-        int actual = testModel.countTotalWordsExcludingStopwords("/WordCounterApp/resources/txt_UnitTest/random_test.txt", "/WordCounterApp/resources/stop-words.txt");
+        int actual = testModel.countTotalWordsExcludingStopwords("/wordcounterapp/random_test.txt", "/wordcounterapp/stop-words.txt");
 
         // then
         assertEquals(expected, actual);
@@ -74,7 +74,7 @@ class WordCounterModelTest {
         int expected = 0;
 
         // when
-        int actual = testModel.countTotalWordsExcludingStopwords("/WordCounterApp/resources/stop-words.txt", "/WordCounterApp/resources/stop-words.txt");
+        int actual = testModel.countTotalWordsExcludingStopwords("/wordcounterapp/stop-words.txt", "/wordcounterapp/stop-words.txt");
 
         // then
         assertEquals(expected, actual);
@@ -86,9 +86,25 @@ class WordCounterModelTest {
         int expected = 0;
 
         // when
-        int actual = testModel.countTotalWordsExcludingStopwords("/WordCounterApp/resources/txt_UnitTest/irregular.txt", "/WordCounterApp/resources/stop-words.txt");
+        int actual = testModel.countTotalWordsExcludingStopwords("/wordcounterapp/irregular_test.txt", "/wordcounterapp/stop-words.txt");
 
         // then
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetTopWords() throws IOException {
+        // given
+        Map<String, Integer> testCorrectOutput = new LinkedHashMap<>() {{
+            put("could", 179);
+            put("one", 168);
+        }};
+
+        // when
+        testWordFrequency = testModel.countWordsFromFile("/wordcounterapp/texto.txt", "/wordcounterapp/stop-words.txt");
+        LinkedHashMap<String, Integer> linkedHashMap = new LinkedHashMap<>(testWordFrequency);
+
+        // then
+        Assertions.assertEquals(testCorrectOutput, testModel.getTopWords(linkedHashMap, 2));
     }
 }
