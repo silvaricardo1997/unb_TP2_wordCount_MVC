@@ -1,19 +1,11 @@
-package model;
+package unb_TP2_wordCount_MVC.WordCounterApp.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.Stream;
 
 class WordCounterModelTest {
     WordCounterModel testModel = new WordCounterModel();
@@ -30,7 +22,7 @@ class WordCounterModelTest {
     @Test
     public void testCountWordsFromFile_OnlyNumbersAndSpecialCharacters() throws IOException {
         // when
-        testWordFrequency = testModel.countWordsFromFile("src/test/java/model/UnitTestingFiles/test-numbers-n-schars.txt", "src/test/java/model/UnitTestingFiles/test-stop-words.txt", 1);
+        testWordFrequency = testModel.countWordsFromFile("/WordCounterApp/resources/txt_UnitTest/irregular.txt", "/WordCounterApp/resources/stop-words.txt", 1);
 
         // then
         assertTrue(testWordFrequency.isEmpty());
@@ -39,7 +31,7 @@ class WordCounterModelTest {
     @Test
     public void testCountWordsFromFile_OnlyStopWords() throws IOException {
         // when
-        testWordFrequency = testModel.countWordsFromFile("src/test/java/model/UnitTestingFiles/test-stop-words.txt", "src/test/java/model/UnitTestingFiles/test-stop-words.txt", 1);
+        testWordFrequency = testModel.countWordsFromFile("/WordCounterApp/resources/stop-words.txt"", "/WordCounterApp/resources/stop-words.txt", 1);
 
         // then
         assertTrue(testWordFrequency.isEmpty());
@@ -58,7 +50,7 @@ class WordCounterModelTest {
         }};
 
         // when
-        testWordFrequency = testModel.countWordsFromFile("src/test/java/model/UnitTestingFiles/test-texto.txt", "src/test/java/model/UnitTestingFiles/test-stop-words.txt", 30);
+        testWordFrequency = testModel.countWordsFromFile("/WordCounterApp/resources/txt_UnitTest/random_test.txt", "/WordCounterApp/resources/stop-words.txt", 30);
 
         // then
         Assertions.assertEquals(testWordFrequency, testCorrectOutput);
@@ -70,7 +62,7 @@ class WordCounterModelTest {
         int expected = 18;
 
         // when
-        int actual = testModel.countTotalWordsExcludingStopwords("src/test/java/model/UnitTestingFiles/test-texto.txt", "src/test/java/model/UnitTestingFiles/test-stop-words.txt");
+        int actual = testModel.countTotalWordsExcludingStopwords("/WordCounterApp/resources/txt_UnitTest/random_test.txt", "/WordCounterApp/resources/stop-words.txt");
 
         // then
         assertEquals(expected, actual);
@@ -82,7 +74,7 @@ class WordCounterModelTest {
         int expected = 0;
 
         // when
-        int actual = testModel.countTotalWordsExcludingStopwords("src/test/java/model/UnitTestingFiles/test-stop-words.txt", "src/test/java/model/UnitTestingFiles/test-stop-words.txt");
+        int actual = testModel.countTotalWordsExcludingStopwords("/WordCounterApp/resources/stop-words.txt", "/WordCounterApp/resources/stop-words.txt");
 
         // then
         assertEquals(expected, actual);
@@ -94,7 +86,7 @@ class WordCounterModelTest {
         int expected = 0;
 
         // when
-        int actual = testModel.countTotalWordsExcludingStopwords("src/test/java/model/UnitTestingFiles/test-numbers-n-schars.txt", "src/test/java/model/UnitTestingFiles/test-stop-words.txt");
+        int actual = testModel.countTotalWordsExcludingStopwords("/WordCounterApp/resources/txt_UnitTest/irregular.txt"", "/WordCounterApp/resources/stop-words.txt");
 
         // then
         assertEquals(expected, actual);
