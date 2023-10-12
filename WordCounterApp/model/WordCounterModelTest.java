@@ -40,14 +40,13 @@ class WordCounterModelTest {
     @Test
     public void testCountWordsFromFile_TrivialWithStopWords() throws IOException {
         // given
-        Map<String, Integer> testCorrectOutput = new LinkedHashMap<>() {{
-            put("degree", 6);
-            put("light", 4);
-            put("trivial", 2);
-            put("thus", 2);
-            put("concert", 2);
-            put("without", 2);
-        }};
+        Map<String, Integer> testCorrectOutput = new LinkedHashMap<>();
+        testCorrectOutput.put("degree", 6);
+        testCorrectOutput.put("light", 4);
+        testCorrectOutput.put("trivial", 2);
+        testCorrectOutput.put("thus", 2);
+        testCorrectOutput.put("concert", 2);
+        testCorrectOutput.put("without", 2);
 
         // when
         testWordFrequency = testModel.countWordsFromFile("/WordCounterApp/resources/txt_UnitTest/random_test.txt", "/WordCounterApp/resources/stop-words.txt", 30);
@@ -55,6 +54,7 @@ class WordCounterModelTest {
         // then
         Assertions.assertEquals(testWordFrequency, testCorrectOutput);
     }
+
 
     @Test
     public void testCountTotalWordsExcludingStopwords_TrivialWithStopWords() throws IOException {
