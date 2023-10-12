@@ -19,12 +19,8 @@ public class WordCounterController {
         return model.countWordsFromFile(textFilePath, stopWordsFilePath);
     }
     
-    public Map<String, Integer> countWordsFromFileLimit(String textFilePath, String stopWordsFilePath, int numWordsToShow) throws IOException {
+    public Map<String, Integer> countWordsFromFileLimit(Map<String, Integer> wordFrequency, int numWordsToShow) throws IOException {
         // Encaminha a solicitação para contar palavras ao modelo, com limitação de pares chave-valor
-        Map<String, Integer> repositorio = model.countWordsFromFile(textFilePath, stopWordsFilePath);
-        LinkedHashMap<String, Integer> linkedHashMap = new LinkedHashMap<>(repositorio);
-
-        // Chame o método que espera um LinkedHashMap
-        return model.getTopWords(linkedHashMap, numWordsToShow);
+        return model.getTopWords(wordFrequency, numWordsToShow);
     }
 }
