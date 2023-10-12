@@ -31,7 +31,7 @@ class WordCounterModelTest {
     @Test
     public void testCountWordsFromFile_OnlyStopWords() throws IOException {
         // when
-        testWordFrequency = testModel.countWordsFromFile("/WordCounterApp/resources/stop-words.txt"", "/WordCounterApp/resources/stop-words.txt", 1);
+        testWordFrequency = testModel.countWordsFromFile("/WordCounterApp/resources/stop-words.txt", "/WordCounterApp/resources/stop-words.txt", 1);
 
         // then
         assertTrue(testWordFrequency.isEmpty());
