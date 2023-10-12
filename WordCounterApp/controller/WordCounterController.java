@@ -21,6 +21,6 @@ public class WordCounterController {
     
     public Map<String, Integer> countWordsFromFileLimit(Map<String, Integer> wordFrequency, int numWordsToShow) throws IOException {
         // Encaminha a solicitação para contar palavras ao modelo, com limitação de pares chave-valor
-        return model.getTopWords(wordFrequency, numWordsToShow);
-    }
+        return model.getTopWords(new LinkedHashMap<>(wordFrequency), numWordsToShow);
+    }   
 }

@@ -95,10 +95,9 @@ class WordCounterModelTest {
     @Test
     public void testGetTopWords() throws IOException {
         // given
-        Map<String, Integer> testCorrectOutput = new LinkedHashMap<>() {{
-            put("could", 179);
-            put("one", 168);
-        }};
+        Map<String, Integer> testCorrectOutput = new LinkedHashMap<>();
+        testCorrectOutput.put("could", 179);
+        testCorrectOutput.put("one", 168);
 
         // when
         testWordFrequency = testModel.countWordsFromFile("/wordcounterapp/texto.txt", "/wordcounterapp/stop-words.txt");
