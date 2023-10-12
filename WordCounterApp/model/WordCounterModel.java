@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class WordCounterModel {
-
+    
     /**
      * Conta a frequência das palavras em um arquivo de texto e retorna as palavras mais frequentes.
      *
@@ -17,7 +17,7 @@ public class WordCounterModel {
      * @return Um mapa de palavras mais frequentes e suas contagens.
      * @throws IOException Se houver um erro de leitura dos arquivos.
      */
-    public Map<String, Integer> countWordsFromFile(String textFilePath, String stopWordsFilePath, int numWordsToShow) throws IOException {
+    public Map<String, Integer> countWordsFromFile(String textFilePath, String stopWordsFilePath) throws IOException {
         // Carrega as stopwords a serem excluídas
         Set<String> stopWords = loadStopWords(stopWordsFilePath);
 
@@ -35,8 +35,11 @@ public class WordCounterModel {
             }
         });
 
-        // Retorna as palavras mais frequentes
-        return getTopWords(wordFrequency, numWordsToShow);
+        // Retorna todas as palavras e frequências
+        return wordFrequency.entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .collect(LinkedHashMap::new, (map, entry) -> map.put(entry.getKey(), entry.getValue()), Map::putAll);
     }
 
     /**
@@ -92,11 +95,12 @@ public class WordCounterModel {
      * @param numWordsToShow O número de palavras mais frequentes a serem exibidas.
      * @return Um mapa das N palavras mais frequentes.
      */
-    private Map<String, Integer> getTopWords(Map<String, Integer> wordFrequency, int numWordsToShow) {
+    public Map<String, Integer> getTopWords(LinkedHashMap<String, Integer> wordFrequency, int numWordsToShow) {
         return wordFrequency.entrySet()
                 .stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
                 .limit(numWordsToShow)
                 .collect(LinkedHashMap::new, (map, entry) -> map.put(entry.getKey(), entry.getValue()), Map::putAll);
     }
+    
 }
