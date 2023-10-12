@@ -4,6 +4,7 @@ O programa conta as palavras em um arquivo de texto e exibe as palavras mais fre
 
 ## O Estilo MVC
 Este projeto segue o padrão arquitetural Model-View-Controller (MVC), que é uma abordagem para estruturar o código de forma a separar a lógica de negócios (Model), a interface do usuário (View) e o controle de eventos (Controller). Isso torna o código mais organizado, modular e fácil de manter.
+
 ## Restrições que motivam a decomposição de acordo com estilo
 O MVC é utilizado para lidar com a complexidade e a manutenção de sistemas. Ele divide a aplicação em três componentes interconectados:
 
@@ -32,5 +33,6 @@ Para executar o aplicativo, siga estas etapas:
 ## Link para a vídeo aula
 
 ### Autores
+Arthur Delpino Barbabella - 221002094
 Ricardo Silva Moreira -  160143756
 
