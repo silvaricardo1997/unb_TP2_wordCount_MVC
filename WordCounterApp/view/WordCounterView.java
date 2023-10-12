@@ -110,10 +110,10 @@ public class WordCounterView {
         } else {
             try {
                 // Chama o controlador para contar palavras e exibir resultados
-                Map<String, Integer> wordFrequencyLimited = controller.countWordsFromFileLimit(textFilePath, stopWordsFilePath, numWordsToShow);
-                displayWordFrequency(wordFrequencyLimited);
                 Map<String, Integer> wordFrequency = controller.countWordsFromFile(textFilePath, stopWordsFilePath);
                 displayTotalCount(wordFrequency);
+                Map<String, Integer> wordFrequencyLimited = controller.countWordsFromFileLimit(wordFrequency, numWordsToShow);
+                displayWordFrequency(wordFrequencyLimited);
             } catch (IOException e) {
                 e.printStackTrace();
             }
