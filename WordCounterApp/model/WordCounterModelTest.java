@@ -86,7 +86,7 @@ class WordCounterModelTest {
         int expected = 0;
 
         // when
-        int actual = testModel.countTotalWordsExcludingStopwords("/WordCounterApp/resources/txt_UnitTest/irregular.txt"", "/WordCounterApp/resources/stop-words.txt");
+        int actual = testModel.countTotalWordsExcludingStopwords("/WordCounterApp/resources/txt_UnitTest/irregular.txt", "/WordCounterApp/resources/stop-words.txt");
 
         // then
         assertEquals(expected, actual);
