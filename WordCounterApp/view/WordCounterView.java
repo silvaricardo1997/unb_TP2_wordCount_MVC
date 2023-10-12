@@ -12,6 +12,7 @@ public class WordCounterView {
     private JFrame frame;
     private JButton countButton;
     private JTextArea outputTextArea;
+    private JTextArea totalCountTextArea;
     private JTextField textFilePathField;
     private JTextField stopWordsFilePathField;
     private JTextField numWordsField;
@@ -21,7 +22,7 @@ public class WordCounterView {
         // Criação da janela principal
         frame = new JFrame("Word Counter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 400);
+        frame.setSize(600, 445);
 
         JPanel panel = new JPanel();
         frame.add(panel);
@@ -45,6 +46,10 @@ public class WordCounterView {
         stopWordsFilePathField.setBounds(220, 50, 330, 30);
         panel.add(stopWordsFilePathField);
 
+        JLabel numWordsCounted = new JLabel("Total da contagem:");
+        numWordsCounted.setBounds(10, 90, 200, 575);
+        panel.add(numWordsCounted);
+        
         JLabel numWordsLabel = new JLabel("N palavras mais frequentes:");
         numWordsLabel.setBounds(10, 90, 200, 30);
         panel.add(numWordsLabel);
@@ -57,6 +62,13 @@ public class WordCounterView {
         countButton = new JButton("Contar");
         countButton.setBounds(10, 130, 120, 30);
         panel.add(countButton);
+
+        // Área de saída da contagem total
+        totalCountTextArea = new JTextArea();
+        totalCountTextArea.setBounds(120, 370, 50, 25);
+        totalCountTextArea.setEditable(false);
+        totalCountTextArea.setOpaque(false);
+        panel.add(totalCountTextArea);
 
         // Área de saída de texto
         outputTextArea = new JTextArea();
@@ -100,18 +112,30 @@ public class WordCounterView {
                 // Chama o controlador para contar palavras e exibir resultados
                 Map<String, Integer> wordFrequency = controller.countWordsFromFile(textFilePath, stopWordsFilePath, numWordsToShow);
                 displayWordFrequency(wordFrequency);
+                displayTotalCount(wordFrequency);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void displayWordFrequency(Map<String, Integer> wordFrequency) {
+    private void displayWordFrequency(Map<String, Integer> wordFrequency) {
         // Exibe a frequência das palavras na área de saída
         StringBuilder output = new StringBuilder();
         for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
             output.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
         }
         outputTextArea.setText(output.toString());
+    }
+    
+    private void displayTotalCount(Map<String, Integer> wordFrequency) {
+        // Exibe contagem total de palavras na área de saída específica
+        int totalCount = 0;
+        for (Map.Entry<String, Integer> entry: wordFrequency.entrySet()) {
+            totalCount += entry.getValue();
+        }
+        StringBuilder output = new StringBuilder();
+        output.append(totalCount);
+        totalCountTextArea.setText(output.toString());
     }
 }
