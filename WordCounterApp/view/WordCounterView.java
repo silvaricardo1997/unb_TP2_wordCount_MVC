@@ -1,6 +1,6 @@
-package unb_TP2_wordCount_MVC.WordCounterApp.view;
+package view;
 
-import unb_TP2_wordCount_MVC.WordCounterApp.controller.WordCounterController;
+import controller.WordCounterController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -111,9 +111,9 @@ public class WordCounterView {
             try {
                 // Chama o controlador para contar palavras e exibir resultados
                 Map<String, Integer> wordFrequency = controller.countWordsFromFile(textFilePath, stopWordsFilePath);
-                displayTotalCount(wordFrequency);
                 Map<String, Integer> wordFrequencyLimited = controller.countWordsFromFileLimit(wordFrequency, numWordsToShow);
                 displayWordFrequency(wordFrequencyLimited);
+                displayTotalCount(textFilePath, stopWordsFilePath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -129,13 +129,9 @@ public class WordCounterView {
         outputTextArea.setText(output.toString());
     }
     
-    private void displayTotalCount(Map<String, Integer> wordFrequency) {
-        
-        int totalCount = 0;
-        for (Map.Entry<String, Integer> entry: wordFrequency.entrySet()) {
-            totalCount += entry.getValue();
-        }
-        
+    private void displayTotalCount(String textFilePath, String stopWordsFilePath) throws IOException {
+        // Exibe o total de palavras contadas  
+        int totalCount = controller.countTotalWordsExcludingStopwords(textFilePath, stopWordsFilePath);
         StringBuilder output = new StringBuilder();
         output.append(totalCount);
         totalCountTextArea.setText(output.toString());
