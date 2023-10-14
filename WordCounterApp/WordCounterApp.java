@@ -1,7 +1,5 @@
-package unb_TP2_wordCount_MVC.WordCounterApp;
-
-import unb_TP2_wordCount_MVC.WordCounterApp.controller.WordCounterController;
-import unb_TP2_wordCount_MVC.WordCounterApp.view.WordCounterView;
+import controller.WordCounterController;
+import view.WordCounterView;
 
 public class WordCounterApp {
     public static void main(String[] args) {
