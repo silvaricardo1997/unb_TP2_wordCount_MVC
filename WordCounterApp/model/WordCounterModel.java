@@ -1,4 +1,4 @@
-package unb_TP2_wordCount_MVC.WordCounterApp.model;
+package model;
 
 import java.io.IOException;
 import java.nio.file.Files;
