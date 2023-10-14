@@ -48,7 +48,7 @@ README.md
 ## Pré-requisitos
 ```
 JDK 20+
-JUnit 3.13.2+
+JUnit 4.13.2+
 ```
 
 ## Link para a vídeo aula
