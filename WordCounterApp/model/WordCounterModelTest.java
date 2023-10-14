@@ -1,13 +1,12 @@
-package unb_TP2_wordCount_MVC.WordCounterApp.model;
+package model;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.*;
+import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-class WordCounterModelTest {
+public class WordCounterModelTest {
     WordCounterModel testModel = new WordCounterModel();
     Map<String, Integer> testWordFrequency = new LinkedHashMap<>();
 
@@ -16,13 +15,14 @@ class WordCounterModelTest {
         // Verifica lançamento de exceção
         assertThrows(IOException.class, () -> {
             testModel.countWordsFromFile("/invalid.txt", "/invalid.txt");
+        
         });
     }
 
     @Test
     public void testCountWordsFromFile_OnlyNumbersAndSpecialCharacters() throws IOException {
         // when
-        testWordFrequency = testModel.countWordsFromFile("/wordcounterapp/irregular_test.txt", "/wordcounterapp/stop-words.txt");
+        testWordFrequency = testModel.countWordsFromFile("\\WordCounterApp\\resources\\txt_UnitTest\\irregular_test.txt", "\\WordCounterApp\\resources\\stop-words.txt");
 
         // then
         assertTrue(testWordFrequency.isEmpty());
@@ -31,7 +31,7 @@ class WordCounterModelTest {
     @Test
     public void testCountWordsFromFile_OnlyStopWords() throws IOException {
         // when
-        testWordFrequency = testModel.countWordsFromFile("/wordcounterapp/stop-words.txt", "/wordcounterapp/stop-words.txt");
+        testWordFrequency = testModel.countWordsFromFile("\\WordCounterApp\\resources\\stop-words.txt", "\\WordCounterApp\\resources\\stop-words.txt");
 
         // then
         assertTrue(testWordFrequency.isEmpty());
@@ -49,10 +49,10 @@ class WordCounterModelTest {
         testCorrectOutput.put("without", 2);
 
         // when
-        testWordFrequency = testModel.countWordsFromFile("/wordcounterapp/random_test.txt", "/wordcounterapp/stop-words.txt");
+        testWordFrequency = testModel.countWordsFromFile("WordCounterApp\\resources\\txt_UnitTest\\random_test.txt", "WordCounterApp\\resources\\stop-words.txt");
 
         // then
-        Assertions.assertEquals(testWordFrequency, testCorrectOutput);
+        assertEquals(testWordFrequency, testCorrectOutput);
     }
 
 
@@ -62,7 +62,7 @@ class WordCounterModelTest {
         int expected = 18;
 
         // when
-        int actual = testModel.countTotalWordsExcludingStopwords("/wordcounterapp/random_test.txt", "/wordcounterapp/stop-words.txt");
+        int actual = testModel.countTotalWordsExcludingStopwords("WordCounterApp\\resources\\txt_UnitTest\\random_test.txt", "WordCounterApp\\resources\\stop-words.txt");
 
         // then
         assertEquals(expected, actual);
@@ -74,7 +74,7 @@ class WordCounterModelTest {
         int expected = 0;
 
         // when
-        int actual = testModel.countTotalWordsExcludingStopwords("/wordcounterapp/stop-words.txt", "/wordcounterapp/stop-words.txt");
+        int actual = testModel.countTotalWordsExcludingStopwords("WordCounterApp\\resources\\stop-words.txt", "WordCounterApp\\resources\\stop-words.txt");
 
         // then
         assertEquals(expected, actual);
@@ -86,7 +86,7 @@ class WordCounterModelTest {
         int expected = 0;
 
         // when
-        int actual = testModel.countTotalWordsExcludingStopwords("/wordcounterapp/irregular_test.txt", "/wordcounterapp/stop-words.txt");
+        int actual = testModel.countTotalWordsExcludingStopwords("WordCounterApp\\resources\\txt_UnitTest\\irregular_test.txt", "WordCounterApp\\resources\\stop-words.txt");
 
         // then
         assertEquals(expected, actual);
@@ -100,7 +100,7 @@ class WordCounterModelTest {
         testCorrectOutput.put("one", 168);
 
         // when
-        testWordFrequency = testModel.countWordsFromFile("/wordcounterapp/texto.txt", "/wordcounterapp/stop-words.txt");
+        testWordFrequency = testModel.countWordsFromFile("WordCounterApp\\resources\\texto.txt", "WordCounterApp\\resources\\stop-words.txt");
         LinkedHashMap<String, Integer> linkedHashMap = new LinkedHashMap<>(testWordFrequency);
 
         // then
