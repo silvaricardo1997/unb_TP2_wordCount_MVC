@@ -1,6 +1,6 @@
-package unb_TP2_wordCount_MVC.WordCounterApp.controller;
+package controller;
 
-import unb_TP2_wordCount_MVC.WordCounterApp.model.WordCounterModel;
+import model.WordCounterModel;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -23,4 +23,9 @@ public class WordCounterController {
         // Encaminha a solicitação para contar palavras ao modelo, com limitação de pares chave-valor
         return model.getTopWords(new LinkedHashMap<>(wordFrequency), numWordsToShow);
     }   
+
+    public int countTotalWordsExcludingStopwords(String textFilePath, String stopWordsFilePath) throws IOException{
+        // Encaminnha a solicitação para contar o total de palavras ao modelo
+        return model.countTotalWordsExcludingStopwords(textFilePath, stopWordsFilePath);
+    }
 }
