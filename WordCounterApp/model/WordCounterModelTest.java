@@ -104,6 +104,6 @@ public class WordCounterModelTest {
         LinkedHashMap<String, Integer> linkedHashMap = new LinkedHashMap<>(testWordFrequency);
 
         // then
-        Assertions.assertEquals(testCorrectOutput, testModel.getTopWords(linkedHashMap, 2));
+        assertEquals(testCorrectOutput, testModel.getTopWords(linkedHashMap, 2));
     }
 }
